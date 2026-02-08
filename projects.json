@@ -1,0 +1,90 @@
+[
+    {
+        "title": "CRM Tugestify",
+        "description": "nuestro centro tech donde nos gestionamos internamente el departamento de evolvance que gestiona Tugestiify",
+        "category": "Desarrollo Web",
+        "image": "https://iili.io/fafdMeS.png",
+        "technologies": [
+            "Tugestify",
+            "crms",
+            "bussines",
+            "evolvance"
+        ],
+        "link": "#",
+        "gradient": [
+            "#7c3aed",
+            "#2563eb"
+        ],
+        "size": "large"
+    },
+    {
+        "title": "Web Evolvance",
+        "description": "Web de la empresa Evolvance con crm internto para la gestión de la empresa.",
+        "category": "Desarrollo Web",
+        "image": "https://iili.io/faKCi3g.md.png",
+        "technologies": [
+            "Web",
+            "Desing",
+            "Branding",
+            "Sales"
+        ],
+        "link": "https://evolvance.es/",
+        "gradient": [
+            "#ec4899",
+            "#8b5cf6"
+        ],
+        "size": "normal"
+    },
+    {
+        "title": "AiTools",
+        "description": "Aplicaciones y herramietas que creo para nuestro equipo de evolvance",
+        "category": "Inteligencia Artificial",
+        "image": "https://iili.io/faKqXN2.png",
+        "technologies": [
+            "Dev",
+            "Tools",
+            "IA"
+        ],
+        "link": "#",
+        "gradient": [
+            "#06b6d4",
+            "#6366f1"
+        ],
+        "size": "normal"
+    },
+    {
+        "title": "Web Tugestify",
+        "description": "web divertida y muy clara que decidimos expresar que con un SLOGAN se entiende - Si tu empresa es única tu CRM tambien deberia de serlo",
+        "category": "Desarrollo Web",
+        "image": "https://iili.io/fafdEdl.png",
+        "technologies": [
+            "tugestify",
+            "evolvance",
+            "crms personalizados"
+        ],
+        "link": "https://tugestify.es/",
+        "gradient": [
+            "#f59e0b",
+            "#ef4444"
+        ],
+        "size": "normal"
+    },
+    {
+        "title": "My Own digital crazy Space",
+        "description": "Donde puedo publicar mis cosas sobretodo para mi familia evolvance y para tener un lugar donde recopilar todo",
+        "category": "Desarrollo Web",
+        "image": "https://iili.io/fafHcjn.png",
+        "technologies": [
+            "mbj",
+            "web",
+            "saved",
+            "knowledge"
+        ],
+        "link": "https://makebyjordan.es/",
+        "gradient": [
+            "#10b981",
+            "#3b82f6"
+        ],
+        "size": "large"
+    }
+]

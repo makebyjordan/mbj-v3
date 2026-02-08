@@ -11,7 +11,8 @@
             "#7c3aed",
             "#2563eb"
         ],
-        "tags": []
+        "tags": [],
+        "image": "https://iili.io/flYpFs9.jpg"
     },
     {
         "id": 2,
@@ -25,7 +26,8 @@
             "#ec4899",
             "#8b5cf6"
         ],
-        "tags": []
+        "tags": [],
+        "image": "https://iili.io/fcIPFmG.png"
     },
     {
         "id": 3,
@@ -39,7 +41,8 @@
             "#06b6d4",
             "#6366f1"
         ],
-        "tags": []
+        "tags": [],
+        "image": "https://iili.io/faq8fYQ.webp"
     },
     {
         "id": 4,
@@ -53,7 +56,8 @@
             "#f59e0b",
             "#ef4444"
         ],
-        "tags": []
+        "tags": [],
+        "image": "https://iili.io/faQKjDJ.md.jpg"
     },
     {
         "id": 5,
@@ -67,6 +71,7 @@
             "#10b981",
             "#3b82f6"
         ],
-        "tags": []
+        "tags": [],
+        "image": "https://iili.io/faqHKHN.png"
     }
 ]

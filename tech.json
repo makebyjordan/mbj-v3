@@ -1,0 +1,74 @@
+[
+    {
+        "title": "IA y Modelos",
+        "icon": "https://iili.io/flYpFs9.jpg",
+        "items": [
+            {
+                "label": "Gemini & Claude",
+                "icon": "https://iili.io/flYpFs9.jpg"
+            },
+            {
+                "label": "OpenAI & LangChain",
+                "icon": "https://iili.io/flYpFs9.jpg"
+            },
+            {
+                "label": "TensorFlow & PyTorch",
+                "icon": "https://iili.io/flYpFs9.jpg"
+            }
+        ]
+    },
+    {
+        "title": "Desarrollo Full-Stack",
+        "icon": "https://iili.io/faqHKHN.png",
+        "items": [
+            {
+                "label": "React & Next.js",
+                "icon": "https://iili.io/faqHKHN.png"
+            },
+            {
+                "label": "Node.js & Python",
+                "icon": "https://iili.io/faqHKHN.png"
+            },
+            {
+                "label": "FastAPI & Django",
+                "icon": "https://iili.io/faqHKHN.png"
+            }
+        ]
+    },
+    {
+        "title": "Infra y Datos",
+        "icon": "https://iili.io/faqHKHN.png",
+        "items": [
+            {
+                "label": "AWS & Google Cloud",
+                "icon": "https://iili.io/faqHKHN.png"
+            },
+            {
+                "label": "Docker & Kubernetes",
+                "icon": "https://iili.io/faqHKHN.png"
+            },
+            {
+                "label": "MongoDB & PostgreSQL",
+                "icon": "https://iili.io/faqHKHN.png"
+            }
+        ]
+    },
+    {
+        "title": "Automatización y DevOps",
+        "icon": "https://iili.io/faqHKHN.png",
+        "items": [
+            {
+                "label": "Zapier & n8n",
+                "icon": "https://iili.io/faqHKHN.png"
+            },
+            {
+                "label": "Git & CI/CD",
+                "icon": "https://iili.io/faqHKHN.png"
+            },
+            {
+                "label": "Windsurf & Antigravity",
+                "icon": "https://iili.io/faqHKHN.png"
+            }
+        ]
+    }
+]

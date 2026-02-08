@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología — MakeByJordan</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="MakeByJordan" class="logo-img">
+                <span class="logo-text">MakeByJordan</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">Visión</a></li>
+                <li><a href="index.html#services">Servicios</a></li>
+                <li><a href="index.html#projects">Proyectos</a></li>
+                <li><a href="index.html#tech">Tecnología</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Iniciar Proyecto</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Alternar menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail">
+        <section class="detail-hero" id="detail-hero">
+            <a href="index.html#tech" class="post-back">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Volver a tecnología
+            </a>
+            <div class="detail-media" id="detail-media"></div>
+            <h1 id="detail-title">Cargando...</h1>
+            <p class="detail-desc" id="detail-desc"></p>
+        </section>
+        <section class="detail-body" id="detail-body"></section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 MakeByJordan. Todos los derechos reservados.</p>
+                <p>Diseñado y Construido con IA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id') || '0', 10);
+            const titleEl = document.getElementById('detail-title');
+            const descEl = document.getElementById('detail-desc');
+            const mediaEl = document.getElementById('detail-media');
+            const bodyEl = document.getElementById('detail-body');
+
+            fetch('tech.json')
+                .then(r => r.json())
+                .then(data => {
+                    const t = data[id];
+                    if (!t) {
+                        titleEl.textContent = 'Tecnología no encontrada';
+                        return;
+                    }
+                    document.title = `${t.title} — MakeByJordan`;
+                    titleEl.textContent = t.title;
+                    descEl.textContent = 'Stack y herramientas principales de esta categoría.';
+                    if (t.icon) {
+                        mediaEl.innerHTML = `<img src="${t.icon}" alt="${t.title}">`;
+                    }
+                    const items = (t.items || []).map(it => `
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                ${it.icon ? `<img src="${it.icon}" alt="${it.label}">` : `<span>${(it.label || '').slice(0,2).toUpperCase()}</span>`}
+                            </div>
+                            <span>${it.label || ''}</span>
+                        </div>
+                    `).join('');
+                    bodyEl.innerHTML = `<div class="tech-items">${items}</div>`;
+                });
+        })();
+    </script>
+</body>
+</html>

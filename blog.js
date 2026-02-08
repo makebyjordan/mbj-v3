@@ -182,6 +182,7 @@
                     <a href="post.html?id=${post.id}" class="blog-card" data-animate="fade-up" data-delay="${i * 80}">
                         <div class="blog-card-image">
                             <div class="blog-card-gradient" style="background: linear-gradient(135deg, ${post.gradient[0]}, ${post.gradient[1]})"></div>
+                            ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-card-photo" loading="lazy" data-post="${post.id}">` : ''}
                             <div class="blog-card-shape">${shape}</div>
                             <span class="blog-card-category">${post.category}</span>
                         </div>
@@ -198,6 +199,9 @@
                             <div class="blog-card-tags">
                                 ${post.tags.map(t => `<span>${t}</span>`).join('')}
                             </div>
+                            <div class="modal-actions">
+                                <a class="btn btn-secondary" href="post.html?id=${post.id}" target="_blank" rel="noopener">Leer más</a>
+                            </div>
                         </div>
                     </a>
                 `;
@@ -210,6 +214,48 @@
                     setTimeout(() => el.classList.add('visible'), delay);
                 });
             }, 100);
+
+            // Modal for post images
+            const modal = document.getElementById('global-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const modalBody = document.getElementById('modal-body');
+            const modalClose = document.getElementById('modal-close');
+
+            function openModal(title, subtitle, bodyHtml) {
+                if (!modal) return;
+                modalTitle.textContent = title || '';
+                modalSubtitle.textContent = subtitle || '';
+                modalBody.innerHTML = bodyHtml || '';
+                modal.classList.add('active');
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+            }
+
+            this.gridEl.querySelectorAll('[data-post]').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const id = parseInt(img.dataset.post, 10);
+                    const post = this.db.getById(id);
+                    if (!post) return;
+                    const dateStr = new Date(post.date).toLocaleDateString('es-ES', {
+                        day: 'numeric', month: 'long', year: 'numeric'
+                    });
+                    const body = `
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}">` : ''}
+                        ${post.content || ''}
+                    `;
+                    openModal(post.title, `${post.category} · ${dateStr}`, body);
+                });
+            });
+
+            modalClose && modalClose.addEventListener('click', closeModal);
+            modal && modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
         }
 
         render() {
@@ -265,6 +311,14 @@
                         </svg>
                         ${post.author}
                     </span>
+                `;
+            }
+
+            // Render hero image
+            const heroEl = document.getElementById('post-hero-image');
+            if (heroEl && post.image) {
+                heroEl.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}">
                 `;
             }
 
