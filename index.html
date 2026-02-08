@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakeByJordan — Estudio de IA e Innovación Digital</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="MakeByJordan" class="logo-img">
+                <span class="logo-text">MakeByJordan</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Visión</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#tech">Tecnología</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contact" class="nav-cta">Iniciar Proyecto</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Alternar menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-links">
+            <li><a href="#about">Visión</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#tech">Tecnología</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#contact" class="nav-cta">Iniciar Proyecto</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-effects">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge" data-animate="fade-up">
+                <span class="badge-dot"></span>
+                Estudio Digital Impulsado por IA
+            </div>
+            <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                El Futuro de la<br>
+                <span class="gradient-text">Inteligencia Artificial</span><br>
+                Se Construye Ahora
+            </h1>
+            <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+                MakeByJordan diseña y construye sistemas inteligentes, asistentes de IA
+                y flujos de trabajo automatizados que transforman la manera en que operan y escalan los negocios.
+            </p>
+            <div class="hero-ctas" data-animate="fade-up" data-delay="300">
+                <a href="#contact" class="btn btn-primary">
+                    <span>Construir con IA</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    <span>Explorar el Futuro</span>
+                </a>
+            </div>
+            <div class="hero-stats" data-animate="fade-up" data-delay="400">
+                <div class="stat">
+                    <span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Sistemas IA Creados</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="200">0</span><span class="stat-suffix">%</span>
+                    <span class="stat-label">Aumento de Eficiencia</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="24">0</span><span class="stat-suffix">/7</span>
+                    <span class="stat-label">Automatización IA</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual" data-animate="fade-up" data-delay="200">
+            <div class="hero-illustration">
+                <div class="ai-core">
+                    <div class="ai-ring ai-ring-1"></div>
+                    <div class="ai-ring ai-ring-2"></div>
+                    <div class="ai-ring ai-ring-3"></div>
+                    <div class="ai-center">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4L38 12V28L24 36L10 28V12L24 4Z" stroke="url(#aiGrad)" stroke-width="1.5"/>
+                            <circle cx="24" cy="20" r="6" fill="url(#aiGrad)" opacity="0.8"/>
+                            <path d="M18 28C18 24.6863 20.6863 22 24 22C27.3137 22 30 24.6863 30 28" stroke="url(#aiGrad)" stroke-width="1.5" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="aiGrad" x1="10" y1="4" x2="38" y2="36">
+                                    <stop stop-color="#a855f7"/>
+                                    <stop offset="0.5" stop-color="#6366f1"/>
+                                    <stop offset="1" stop-color="#ec4899"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="ai-node ai-node-1">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="2" y="2" width="16" height="16" rx="4" stroke="#a855f7" stroke-width="1.2"/>
+                            <path d="M7 10H13M10 7V13" stroke="#a855f7" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="ai-node ai-node-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="7" stroke="#6366f1" stroke-width="1.2"/>
+                            <path d="M7 10L9 12L13 8" stroke="#6366f1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="ai-node ai-node-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2L18 7V13L10 18L2 13V7L10 2Z" stroke="#ec4899" stroke-width="1.2"/>
+                            <circle cx="10" cy="10" r="3" fill="#ec4899" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="ai-node ai-node-4">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="3" y="3" width="14" height="14" rx="3" stroke="#8b5cf6" stroke-width="1.2"/>
+                            <circle cx="7" cy="10" r="1.5" fill="#8b5cf6"/>
+                            <circle cx="13" cy="10" r="1.5" fill="#8b5cf6"/>
+                            <path d="M8 13C8 13 9 14 10 14C11 14 12 13 12 13" stroke="#8b5cf6" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="ai-node ai-node-5">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M3 7H17L15 17H5L3 7Z" stroke="#c084fc" stroke-width="1.2"/>
+                            <path d="M7 7V5C7 3.34 8.34 2 10 2C11.66 2 13 3.34 13 5V7" stroke="#c084fc" stroke-width="1.2"/>
+                        </svg>
+                    </div>
+                    <div class="ai-node ai-node-6">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10C4 6.68629 6.68629 4 10 4" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M16 10C16 13.3137 13.3137 16 10 16" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="10" cy="10" r="2" fill="#818cf8"/>
+                        </svg>
+                    </div>
+                    <!-- Connection lines drawn via CSS -->
+                    <svg class="ai-connections" width="100%" height="100%" viewBox="0 0 400 400">
+                        <line x1="200" y1="200" x2="200" y2="40" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <line x1="200" y1="200" x2="340" y2="120" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <line x1="200" y1="200" x2="340" y2="280" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <line x1="200" y1="200" x2="200" y2="360" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <line x1="200" y1="200" x2="60" y2="280" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <line x1="200" y1="200" x2="60" y2="120" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <defs>
+                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a855f7" stop-opacity="0"/>
+                                <stop offset="50%" stop-color="#a855f7" stop-opacity="1"/>
+                                <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" data-animate="fade-up" data-delay="600">
+            <div class="scroll-line"></div>
+            <span>Desliza para explorar</span>
+        </div>
+    </section>
+
+    <!-- About / Vision Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Nuestra Visión</span>
+                <h2 class="section-title">La Inteligencia No Es el Futuro.<br><span class="gradient-text">Es el Estándar.</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text" data-animate="fade-up" data-delay="100">
+                    <p class="about-lead">
+                        Jordan G. Rey — Desarrollador IA &amp; Prompt Engineer.
+                    </p>
+                    <p>
+                        Soy un desarrollador tecnológico apasionado por crear soluciones innovadoras que transforman negocios.
+                        Con más de 5 años de experiencia en desarrollo de software, especializado en inteligencia artificial
+                        y automatización de procesos.
+                    </p>
+                    <p>
+                        Mi objetivo es ayudar a empresas y emprendedores a escalar sus operaciones mediante tecnología de vanguardia.
+                        <em>(los datos reflejan las experiencia, proyectos y clientes de todos los nichos empresariales donde emprendí desde los 18 años)</em>
+                    </p>
+                    <ul class="about-skills service-features">
+                        <li>React &amp; Next.js</li>
+                        <li>Node.js &amp; Python</li>
+                        <li>FastAPI &amp; Django</li>
+                        <li>MongoDB &amp; PostgreSQL</li>
+                        <li>Gemini &amp; Claude</li>
+                        <li>OpenAI &amp; LangChain</li>
+                        <li>Windsurf &amp; Antigravity</li>
+                        <li>TensorFlow &amp; PyTorch</li>
+                        <li>Docker &amp; Kubernetes</li>
+                        <li>AWS &amp; Google Cloud</li>
+                        <li>Zapier &amp; n8n</li>
+                        <li>Git &amp; CI/CD</li>
+                    </ul>
+                    <div class="about-highlights">
+                        <div class="highlight">
+                            <div class="highlight-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2L22 7V17L12 22L2 17V7L12 2Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>22+ años de experiencia</h4>
+                                <p>Trayectoria real construyendo negocios y tecnología</p>
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>150+ proyectos</h4>
+                                <p>Productos, automatizaciones y sistemas a medida</p>
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 12H22M12 2C14.5 4.5 16 8 16 12C16 16 14.5 19.5 12 22C9.5 19.5 8 16 8 12C8 8 9.5 4.5 12 2Z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>300+ clientes</h4>
+                                <p>Empresas y emprendedores en múltiples sectores</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-animate="fade-up" data-delay="200">
+                    <div class="vision-card">
+                        <div class="vision-card-glow"></div>
+                        <div class="vision-lines">
+                            <div class="v-line"></div>
+                            <div class="v-line"></div>
+                            <div class="v-line"></div>
+                            <div class="v-line"></div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="vision-content">
+                            <div class="vision-icon">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <circle cx="32" cy="32" r="20" stroke="url(#visionGrad)" stroke-width="1"/>
+                                    <circle cx="32" cy="32" r="12" stroke="url(#visionGrad)" stroke-width="1" opacity="0.6"/>
+                                    <circle cx="32" cy="32" r="4" fill="url(#visionGrad)"/>
+                                    <path d="M32 8V16M32 48V56M8 32H16M48 32H56" stroke="url(#visionGrad)" stroke-width="1" opacity="0.4"/>
+                                    <path d="M15 15L21 21M43 43L49 49M49 15L43 21M21 43L15 49" stroke="url(#visionGrad)" stroke-width="1" opacity="0.3"/>
+                                    <defs>
+                                        <linearGradient id="visionGrad" x1="12" y1="12" x2="52" y2="52">
+                                            <stop stop-color="#a855f7"/>
+                                            <stop offset="1" stop-color="#ec4899"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <span class="vision-label">Motor Central de IA</span>
+                            <div class="vision-metrics">
+                                <div class="metric">
+                                    <span class="metric-val">99.9%</span>
+                                    <span class="metric-lbl">Disponibilidad</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-val">&lt;50ms</span>
+                                    <span class="metric-lbl">Respuesta</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-val">10M+</span>
+                                    <span class="metric-lbl">Peticiones/día</span>
+                                </div>
+                            </div>
+                            <div class="vision-bars">
+                                <div class="bar"><div class="bar-fill" style="--width: 95%"></div><span>Procesamiento Neuronal</span></div>
+                                <div class="bar"><div class="bar-fill" style="--width: 88%"></div><span>Lenguaje Natural</span></div>
+                                <div class="bar"><div class="bar-fill" style="--width: 92%"></div><span>Automatización</span></div>
+                                <div class="bar"><div class="bar-fill" style="--width: 85%"></div><span>Visión Artificial</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Lo Que Construimos</span>
+                <h2 class="section-title">Soluciones Inteligentes para<br><span class="gradient-text">la Nueva Era Digital</span></h2>
+                <p class="section-desc">Cada sistema que construimos está diseñado para pensar, adaptarse y escalar. Desde IA conversacional hasta automatización completa, entregamos soluciones que redefinen lo posible.</p>
+            </div>
+            <div class="services-grid services-grid-3">
+                <div class="service-card" data-animate="fade-up" data-delay="0">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="4" y="6" width="32" height="28" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M14 18L18 22L14 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 26H28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M4 14H36" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3>Desarrollo de Software</h3>
+                    <p>Desarrollo de aplicaciones web y móviles personalizadas con tecnologías modernas como React, Node.js, Python y más.</p>
+                    <div class="service-price">Desde 50€/hora</div>
+                    <div class="service-divider"></div>
+                    <ul class="service-features">
+                        <li>Aplicaciones web full-stack</li>
+                        <li>APIs REST y GraphQL</li>
+                        <li>Apps móviles multiplataforma</li>
+                        <li>Crms Personalizados</li>
+                        <li>Arquitectura escalable</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Estimación
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card featured" data-animate="fade-up" data-delay="100">
+                    <div class="service-card-bg"></div>
+                    <div class="service-badge">Más Solicitado</div>
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="6" y="6" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="28" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M6 32H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="32" r="6" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M18 12H22M12 18V26M28 18V26M22 32H34" stroke="currentColor" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+                            <circle cx="28" cy="32" r="4" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                    </div>
+                    <h3>Asistentes con IA</h3>
+                    <p>Creación de chatbots inteligentes y asistentes virtuales con capacidades de procesamiento de lenguaje natural.</p>
+                    <div class="service-price">Desde 60€/hora</div>
+                    <div class="service-divider"></div>
+                    <ul class="service-features">
+                        <li>Chatbots conversacionales</li>
+                        <li>Asistentes de atención al cliente</li>
+                        <li>Integración con GPT-4 y modelos avanzados</li>
+                        <li>Análisis de sentimientos</li>
+                        <li>Personalización y entrenamiento</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Estimación
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="200">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M8 12H32M8 20H32M8 28H32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="16" cy="12" r="3" fill="currentColor" opacity="0.3" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="26" cy="20" r="3" fill="currentColor" opacity="0.3" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="20" cy="28" r="3" fill="currentColor" opacity="0.3" stroke="currentColor" stroke-width="1"/>
+                            <path d="M19 12L26 20M23 20L20 28" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3>Automatizaciones</h3>
+                    <p>Automatización de procesos empresariales para aumentar la eficiencia y reducir costos operativos.</p>
+                    <div class="service-price">Desde 55€/hora</div>
+                    <div class="service-divider"></div>
+                    <ul class="service-features">
+                        <li>RPA (Robotic Process Automation)</li>
+                        <li>Integración Zapier/Make</li>
+                        <li>Workflows personalizados</li>
+                        <li>Scraping de datos</li>
+                        <li>Sincronización de sistemas</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Estimación
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="0">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="16" r="6" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8 34C8 26 32 26 32 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M20 6V2M12 8L9 5M28 8L31 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3>Prompt Engineering</h3>
+                    <p>Diseño y optimización profesional de instrucciones (prompts) para exprimir al máximo el potencial de modelos de IA generativa.</p>
+                    <div class="service-price">Desde 75€/hora</div>
+                    <div class="service-divider"></div>
+                    <ul class="service-features">
+                        <li>Adaptación de IA en empresas</li>
+                        <li>Generación de imágenes</li>
+                        <li>Ayudas con uso de IA profesional</li>
+                        <li>Para PYMES elevando Resultados</li>
+                        <li>Creación de documentos PRO</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Estimación
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="100">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M10 30L26 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M24 10H30V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="6" y="22" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="26" cy="26" r="5" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Diseño y Branding</h3>
+                    <p>Creación de identidades visuales impactantes y diseño de interfaces de usuario (UI/UX) intuitivas que conectan con tu audiencia.</p>
+                    <div class="service-price">Desde 45€/hora</div>
+                    <div class="service-divider"></div>
+                    <ul class="service-features">
+                        <li>Diseño UI/UX (Web y App)</li>
+                        <li>Identidad corporativa y Logotipos</li>
+                        <li>Sistemas de diseño (Design Systems)</li>
+                        <li>Prototipado interactivo</li>
+                        <li>Assets para redes sociales</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Estimación
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="200">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M6 20C10 12 16 12 20 20C24 28 30 28 34 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M12 24C14 22 16 22 18 24M22 16C24 18 26 18 28 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                            <circle cx="12" cy="18" r="3" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="28" cy="22" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Contratación con Evolvannce</h3>
+                    <p>Para contratación de servicios, contactar con la empresa evolvance. Este espacio digital es informativo.</p>
+                    <div class="service-price">Desde 50€/hora</div>
+                    <div class="service-divider"></div>
+                    <ul class="service-features">
+                        <li>Compromiso</li>
+                        <li>Empresa seria</li>
+                        <li>Aquipo multidesciplinar</li>
+                        <li>Expertos en IA</li>
+                        <li>Necesidad del cliente lo primero</li>
+                        <li>Departamentos diseño, ventas y Dev</li>
+                    </ul>
+                    <a href="https://evolvance.es/" class="service-link" target="_blank" rel="noopener">
+                        Contactar con Evolvance
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section services" id="process">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Proceso</span>
+                <h2 class="section-title">Cómo Trabajamos<br><span class="gradient-text">Paso a Paso</span></h2>
+                <p class="section-desc">Un flujo claro y transparente para avanzar con foco, resultados y aprendizaje real en cada etapa.</p>
+            </div>
+            <div class="services-grid services-grid-3">
+                <div class="service-card" data-animate="fade-up" data-delay="0">
+                    <div class="service-card-bg"></div>
+                    <h3>1. Pregúntame</h3>
+                    <p>Cuéntame tu situación actual, tus objetivos y qué quieres lograr. Sin contexto no hay estrategia.</p>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="60">
+                    <div class="service-card-bg"></div>
+                    <h3>2. Analizamos</h3>
+                    <p>Revisamos juntos tu punto de partida. Identificamos fortalezas y gaps antes de trazar la ruta.</p>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="120">
+                    <div class="service-card-bg"></div>
+                    <h3>3. Estructuro Formación</h3>
+                    <p>Diseño un plan de aprendizaje adaptado a ti, seleccionando contenidos relevantes y ordenados.</p>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="180">
+                    <div class="service-card-bg"></div>
+                    <h3>4. Desarrollo</h3>
+                    <p>Entramos en materia. Trabajamos los contenidos, resolvemos ejercicios prácticos y aplicamos.</p>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="240">
+                    <div class="service-card-bg"></div>
+                    <h3>5. Analizo</h3>
+                    <p>Reviso tu trabajo, tu progreso y tus entregables. Feedback detallado para corregir rápido.</p>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="300">
+                    <div class="service-card-bg"></div>
+                    <h3>6. Consensuamos</h3>
+                    <p>Discutimos resultados juntos. Ajustamos expectativas y el plan si es necesario.</p>
+                </div>
+                <div class="service-card" data-animate="fade-up" data-delay="360">
+                    <div class="service-card-bg"></div>
+                    <h3>7. Determinación Final</h3>
+                    <p>Cerramos el ciclo con conclusiones claras y documentación de lo aprendido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Trabajo Seleccionado</span>
+                <h2 class="section-title">Proyectos que Empujan<br><span class="gradient-text">los Límites</span></h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card project-large" data-animate="fade-up" data-delay="0">
+                    <div class="project-visual">
+                        <div class="project-gradient" style="--g1: #7c3aed; --g2: #2563eb;"></div>
+                        <div class="project-shape">
+                            <svg viewBox="0 0 200 200" fill="none">
+                                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                                <circle cx="100" cy="100" r="60" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                                <circle cx="100" cy="100" r="40" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                                <circle cx="100" cy="100" r="20" fill="rgba(255,255,255,0.1)"/>
+                                <path d="M100 20V180M20 100H180" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Asistente IA</span>
+                        <h3>NeuroChat Enterprise</h3>
+                        <p>Un asistente de IA multimodal capaz de procesar texto, voz y documentos. Desplegado en más de 500 clientes empresariales con un 99.7% de precisión.</p>
+                        <div class="project-tags">
+                            <span>NLP</span>
+                            <span>IA de Voz</span>
+                            <span>Empresarial</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-animate="fade-up" data-delay="100">
+                    <div class="project-visual">
+                        <div class="project-gradient" style="--g1: #ec4899; --g2: #8b5cf6;"></div>
+                        <div class="project-shape">
+                            <svg viewBox="0 0 200 200" fill="none">
+                                <rect x="40" y="40" width="120" height="120" rx="20" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" transform="rotate(15 100 100)"/>
+                                <rect x="60" y="60" width="80" height="80" rx="12" stroke="rgba(255,255,255,0.2)" stroke-width="0.5" transform="rotate(-10 100 100)"/>
+                                <circle cx="100" cy="100" r="15" fill="rgba(255,255,255,0.1)"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Automatización</span>
+                        <h3>FlowSync</h3>
+                        <p>Plataforma de automatización de flujos inteligentes que conecta más de 200 herramientas SaaS con lógica de decisión impulsada por IA.</p>
+                        <div class="project-tags">
+                            <span>Automatización</span>
+                            <span>APIs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-animate="fade-up" data-delay="200">
+                    <div class="project-visual">
+                        <div class="project-gradient" style="--g1: #06b6d4; --g2: #6366f1;"></div>
+                        <div class="project-shape">
+                            <svg viewBox="0 0 200 200" fill="none">
+                                <polygon points="100,20 180,70 180,130 100,180 20,130 20,70" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                                <polygon points="100,50 150,75 150,125 100,150 50,125 50,75" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                                <circle cx="100" cy="100" r="12" fill="rgba(255,255,255,0.15)"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Producto IA</span>
+                        <h3>PredictVision</h3>
+                        <p>Plataforma de visión artificial para detección de objetos en tiempo real y analítica predictiva en retail.</p>
+                        <div class="project-tags">
+                            <span>CV</span>
+                            <span>ML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-animate="fade-up" data-delay="100">
+                    <div class="project-visual">
+                        <div class="project-gradient" style="--g1: #f59e0b; --g2: #ef4444;"></div>
+                        <div class="project-shape">
+                            <svg viewBox="0 0 200 200" fill="none">
+                                <path d="M100 20L150 60V100L100 140L50 100V60Z" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                                <path d="M100 60L130 80V100L100 120L70 100V80Z" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                                <circle cx="100" cy="90" r="10" fill="rgba(255,255,255,0.1)"/>
+                                <line x1="100" y1="140" x2="100" y2="180" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                                <circle cx="80" cy="170" r="8" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                                <circle cx="120" cy="175" r="6" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Sistema Digital</span>
+                        <h3>DataForge</h3>
+                        <p>Dashboard de analítica en tiempo real impulsado por IA, procesando más de 10M de eventos diarios con alertas inteligentes.</p>
+                        <div class="project-tags">
+                            <span>Analítica</span>
+                            <span>Tiempo Real</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card project-large" data-animate="fade-up" data-delay="200">
+                    <div class="project-visual">
+                        <div class="project-gradient" style="--g1: #10b981; --g2: #3b82f6;"></div>
+                        <div class="project-shape">
+                            <svg viewBox="0 0 200 200" fill="none">
+                                <circle cx="60" cy="80" r="25" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                                <circle cx="140" cy="80" r="25" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                                <circle cx="100" cy="140" r="25" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                                <line x1="80" y1="90" x2="120" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                                <line x1="75" y1="100" x2="90" y2="125" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                                <line x1="125" y1="100" x2="110" y2="125" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Ecosistema IA</span>
+                        <h3>SynapseOS</h3>
+                        <p>Una capa operativa para IA que unifica múltiples modelos, flujos de datos y herramientas de automatización en una única plataforma inteligente para operaciones empresariales.</p>
+                        <div class="project-tags">
+                            <span>Plataforma</span>
+                            <span>Multi-modelo</span>
+                            <span>Empresarial</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="section tech" id="tech">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Tecnología</span>
+                <h2 class="section-title">Impulsados por la<br><span class="gradient-text">Mejor Tecnología</span></h2>
+                <p class="section-desc">Utilizamos frameworks de IA de vanguardia, infraestructura cloud y herramientas de desarrollo modernas para construir sistemas rápidos, fiables e inteligentes.</p>
+            </div>
+            <div class="tech-grid" data-animate="fade-up" data-delay="100">
+                <div class="tech-category">
+                    <h3 class="tech-category-title">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2L18 7V13L10 18L2 13V7L10 2Z" stroke="currentColor" stroke-width="1.2"/>
+                            <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                        IA y Machine Learning
+                    </h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>GP</span>
+                            </div>
+                            <span>GPT / LLMs</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>TF</span>
+                            </div>
+                            <span>TensorFlow</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>PT</span>
+                            </div>
+                            <span>PyTorch</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>LN</span>
+                            </div>
+                            <span>LangChain</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>HF</span>
+                            </div>
+                            <span>Hugging Face</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>CV</span>
+                            </div>
+                            <span>OpenCV</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M3 7H17L15 17H5L3 7Z" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M7 7V5C7 3.34 8.34 2 10 2C11.66 2 13 3.34 13 5V7" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                        Automatización y APIs
+                    </h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>ZP</span>
+                            </div>
+                            <span>Zapier</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>MK</span>
+                            </div>
+                            <span>Make</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>N8</span>
+                            </div>
+                            <span>n8n</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>RE</span>
+                            </div>
+                            <span>REST APIs</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>GQ</span>
+                            </div>
+                            <span>GraphQL</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>WH</span>
+                            </div>
+                            <span>Webhooks</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M6 9L8 11L6 13M10 13H14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Desarrollo
+                    </h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>PY</span>
+                            </div>
+                            <span>Python</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>TS</span>
+                            </div>
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>NX</span>
+                            </div>
+                            <span>Next.js</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>RE</span>
+                            </div>
+                            <span>React</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>ND</span>
+                            </div>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>FA</span>
+                            </div>
+                            <span>FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2C10 2 4 6 4 11C4 14.3137 6.68629 17 10 17C13.3137 17 16 14.3137 16 11C16 6 10 2 10 2Z" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M10 10V14M8 12H12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+                        Cloud e Infraestructura
+                    </h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>AW</span>
+                            </div>
+                            <span>AWS</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>GC</span>
+                            </div>
+                            <span>Google Cloud</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>VR</span>
+                            </div>
+                            <span>Vercel</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>DK</span>
+                            </div>
+                            <span>Docker</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>SB</span>
+                            </div>
+                            <span>Supabase</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">
+                                <span>PG</span>
+                            </div>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta" id="contact">
+        <div class="cta-bg-effects">
+            <div class="cta-orb cta-orb-1"></div>
+            <div class="cta-orb cta-orb-2"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content" data-animate="fade-up">
+                <span class="section-tag">Construyamos</span>
+                <h2 class="cta-title">¿Listo para Construir el<br><span class="gradient-text">Futuro con IA?</span></h2>
+                <p class="cta-text">Ya sea que necesites un asistente de IA, flujos de trabajo automatizados o un producto de IA completamente personalizado, MakeByJordan está listo para hacerlo realidad. Creemos algo extraordinario.</p>
+                <div class="cta-buttons">
+                    <a href="mailto:hello@makebyjordan.com" class="btn btn-primary btn-large">
+                        <span>Iniciar un Proyecto</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:hello@makebyjordan.com" class="btn btn-secondary btn-large">
+                        <span>Agendar una Llamada</span>
+                    </a>
+                </div>
+                <div class="cta-trust">
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Consulta inicial gratuita</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Solo soluciones a medida</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Enfoque IA-first</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <img src="logo.png" alt="MakeByJordan" class="logo-img">
+                        <span class="logo-text">MakeByJordan</span>
+                    </a>
+                    <p class="footer-desc">Estudio de IA e Innovación Digital. Construyendo sistemas inteligentes que transforman negocios.</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#services">Desarrollo de Software</a></li>
+                        <li><a href="#services">Asistentes con IA</a></li>
+                        <li><a href="#services">Automatizaciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#projects">Proyectos</a></li>
+                        <li><a href="#tech">Tecnología</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Conectar</h4>
+                    <ul>
+                        <li><a href="#">Twitter / X</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MakeByJordan. Todos los derechos reservados.</p>
+                <p>Diseñado y Construido con IA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

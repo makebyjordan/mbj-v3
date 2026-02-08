@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — MakeByJordan</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="blog">
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="MakeByJordan" class="logo-img">
+                <span class="logo-text">MakeByJordan</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="blog.html" style="color: var(--text-primary)">Blog</a></li>
+                <li><a href="index.html#services">Servicios</a></li>
+                <li><a href="index.html#projects">Proyectos</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Iniciar Proyecto</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Alternar menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#services">Servicios</a></li>
+            <li><a href="index.html#projects">Proyectos</a></li>
+            <li><a href="index.html#contact" class="nav-cta">Iniciar Proyecto</a></li>
+        </ul>
+    </div>
+
+    <!-- Blog Hero -->
+    <div class="blog-hero">
+        <h1>Blog de <span class="gradient-text">MakeByJordan</span></h1>
+        <p>Ideas, tendencias y guías sobre IA, automatización y desarrollo digital.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="container">
+        <div id="blog-filters" class="blog-filters"></div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="container">
+        <div id="blog-grid" class="blog-grid"></div>
+    </div>
+
+    <!-- Spacer -->
+    <div style="height: 100px;"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <img src="logo.png" alt="MakeByJordan" class="logo-img">
+                        <span class="logo-text">MakeByJordan</span>
+                    </a>
+                    <p class="footer-desc">Estudio de IA e Innovación Digital. Construyendo sistemas inteligentes que transforman negocios.</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="index.html#services">Desarrollo de Software</a></li>
+                        <li><a href="index.html#services">Asistentes con IA</a></li>
+                        <li><a href="index.html#services">Automatizaciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="index.html#about">Nosotros</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#tech">Tecnología</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Conectar</h4>
+                    <ul>
+                        <li><a href="#">Twitter / X</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MakeByJordan. Todos los derechos reservados.</p>
+                <p>Diseñado y Construido con IA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="blog.js"></script>
+</body>
+</html>
