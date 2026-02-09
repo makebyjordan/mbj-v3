@@ -714,14 +714,19 @@
             techPromise.then(data => {
                     grid.innerHTML = data.map((cat, i) => {
                         const techId = i;
-                        const items = (cat.items || []).map(item => `
-                            <div class="tech-item">
-                                <div class="tech-item-icon">
-                                    ${item.icon ? `<img src="${item.icon}" alt="${item.label}" data-tech-item="${techId}" data-tech-label="${item.label || ''}" data-tech-icon="${item.icon || ''}">` : `<span>${(item.label || '').slice(0,2).toUpperCase()}</span>`}
-                                </div>
-                                <span>${item.label || ''}</span>
-                            </div>
-                        `).join('');
+                        const items = (cat.items || []).map(item => {
+                            const hasLink = item.link && item.link !== '#';
+                            const wrapperStart = hasLink ? `<a class="tech-item tech-item-link" href="${item.link}" target="_blank" rel="noopener">` : `<div class="tech-item">`;
+                            const wrapperEnd = hasLink ? `</a>` : `</div>`;
+                            return `
+                                ${wrapperStart}
+                                    <div class="tech-item-icon">
+                                        ${item.icon ? `<img src="${item.icon}" alt="${item.label}" data-tech-item="${techId}" data-tech-label="${item.label || ''}" data-tech-icon="${item.icon || ''}" data-tech-link="${item.link || ''}">` : `<span>${(item.label || '').slice(0,2).toUpperCase()}</span>`}
+                                    </div>
+                                    <span>${item.label || ''}</span>
+                                ${wrapperEnd}
+                            `;
+                        }).join('');
 
                         return `
                             <div class="tech-category">
@@ -760,9 +765,11 @@
                             e.stopPropagation();
                             const label = img.dataset.techLabel || '';
                             const icon = img.dataset.techIcon || '';
+                            const link = img.dataset.techLink || '';
                             const body = `
                                 ${icon ? `<img src="${icon}" alt="${label}">` : ''}
                                 <p>${label}</p>
+                                ${link ? `<div class="modal-actions"><a class="btn btn-primary" href="${link}" target="_blank" rel="noopener">Abrir app</a></div>` : ''}
                             `;
                             window.mbjModal.open(label, 'Tecnología', body);
                         });

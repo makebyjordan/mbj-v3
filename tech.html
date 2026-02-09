@@ -82,14 +82,19 @@
                     if (t.icon) {
                         mediaEl.innerHTML = `<img src="${t.icon}" alt="${t.title}">`;
                     }
-                    const items = (t.items || []).map(it => `
-                        <div class="tech-item">
-                            <div class="tech-item-icon">
-                                ${it.icon ? `<img src="${it.icon}" alt="${it.label}">` : `<span>${(it.label || '').slice(0,2).toUpperCase()}</span>`}
-                            </div>
-                            <span>${it.label || ''}</span>
-                        </div>
-                    `).join('');
+                    const items = (t.items || []).map(it => {
+                        const hasLink = it.link && it.link !== '#';
+                        const start = hasLink ? `<a class="tech-item tech-item-link" href="${it.link}" target="_blank" rel="noopener">` : `<div class="tech-item">`;
+                        const end = hasLink ? `</a>` : `</div>`;
+                        return `
+                            ${start}
+                                <div class="tech-item-icon">
+                                    ${it.icon ? `<img src="${it.icon}" alt="${it.label}">` : `<span>${(it.label || '').slice(0,2).toUpperCase()}</span>`}
+                                </div>
+                                <span>${it.label || ''}</span>
+                            ${end}
+                        `;
+                    }).join('');
                     bodyEl.innerHTML = `<div class="tech-items">${items}</div>`;
             });
         })();

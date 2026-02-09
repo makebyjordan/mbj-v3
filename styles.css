@@ -1252,6 +1252,11 @@ img {
     text-align: center;
 }
 
+.tech-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .tech-item:hover {
     background: rgba(168, 85, 247, 0.05);
     border-color: rgba(168, 85, 247, 0.1);

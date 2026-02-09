@@ -5,15 +5,18 @@
         "items": [
             {
                 "label": "Gemini & Claude",
-                "icon": "https://iili.io/flYpFs9.jpg"
+                "icon": "https://iili.io/flYpFs9.jpg",
+                "link": ""
             },
             {
                 "label": "OpenAI & LangChain",
-                "icon": "https://iili.io/flYpFs9.jpg"
+                "icon": "https://iili.io/flYpFs9.jpg",
+                "link": ""
             },
             {
                 "label": "TensorFlow & PyTorch",
-                "icon": "https://iili.io/flYpFs9.jpg"
+                "icon": "https://iili.io/flYpFs9.jpg",
+                "link": ""
             }
         ]
     },
@@ -23,15 +26,18 @@
         "items": [
             {
                 "label": "React & Next.js",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             },
             {
                 "label": "Node.js & Python",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             },
             {
                 "label": "FastAPI & Django",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             }
         ]
     },
@@ -41,15 +47,18 @@
         "items": [
             {
                 "label": "AWS & Google Cloud",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             },
             {
                 "label": "Docker & Kubernetes",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             },
             {
                 "label": "MongoDB & PostgreSQL",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             }
         ]
     },
@@ -59,15 +68,18 @@
         "items": [
             {
                 "label": "Zapier & n8n",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             },
             {
                 "label": "Git & CI/CD",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             },
             {
                 "label": "Windsurf & Antigravity",
-                "icon": "https://iili.io/faqHKHN.png"
+                "icon": "https://iili.io/faqHKHN.png",
+                "link": ""
             }
         ]
     }
