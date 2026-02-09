@@ -4,19 +4,19 @@
         "icon": "https://iili.io/flYpFs9.jpg",
         "items": [
             {
-                "label": "Gemini & Claude",
-                "icon": "https://iili.io/flYpFs9.jpg",
-                "link": ""
+                "label": "Gemini",
+                "icon": "https://favicon.im/gemini.google.com?larger=true",
+                "link": "https://gemini.google.com/app"
             },
             {
-                "label": "OpenAI & LangChain",
-                "icon": "https://iili.io/flYpFs9.jpg",
-                "link": ""
+                "label": "Claude",
+                "icon": "https://favicon.im/claude.ai?larger=true&t=1770598758800",
+                "link": "https://claude.ai/"
             },
             {
-                "label": "TensorFlow & PyTorch",
-                "icon": "https://iili.io/flYpFs9.jpg",
-                "link": ""
+                "label": "ChatGPT",
+                "icon": "https://favicon.im/CHATGPT.com?larger=true&t=1770598672147",
+                "link": "https://chatgpt.com/"
             }
         ]
     },
