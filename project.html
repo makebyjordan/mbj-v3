@@ -71,9 +71,10 @@
             const bodyEl = document.getElementById('detail-body');
             const actionsEl = document.getElementById('detail-actions');
 
-            fetch('projects.json')
-                .then(r => r.json())
-                .then(data => {
+            const cached = localStorage.getItem('mbj_json_projects');
+            const projectsPromise = cached ? Promise.resolve(JSON.parse(cached)) : fetch('projects.json').then(r => r.json());
+
+            projectsPromise.then(data => {
                     const p = data[id];
                     if (!p) {
                         titleEl.textContent = 'Proyecto no encontrado';
@@ -94,7 +95,7 @@
                     if (p.link && p.link !== '#') {
                         actionsEl.innerHTML = `<a class="btn btn-primary" href="${p.link}" target="_blank" rel="noopener">Abrir proyecto</a>`;
                     }
-                });
+            });
         })();
     </script>
 </body>

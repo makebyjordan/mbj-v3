@@ -7,6 +7,7 @@
     'use strict';
 
     const STORAGE_KEY = 'mbj_blog_posts';
+    const JSON_STORAGE_PREFIX = 'mbj_json_';
     const ADMIN_PASS = 'makebyjordan2026';
     const AUTH_KEY = 'mbj_admin_auth';
 
@@ -392,6 +393,7 @@
         constructor(db) {
             this.db = db;
             this.editingId = null;
+            this.activeTab = 'blog';
         }
 
         isAuthenticated() {
@@ -431,6 +433,8 @@
         initDashboard() {
             this.renderPosts();
             this.initModal();
+            this.initTabs();
+            this.initJsonEditor();
 
             // New post button
             const newBtn = document.getElementById('btn-new-post');
@@ -443,6 +447,103 @@
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', () => this.logout());
             }
+        }
+
+        initTabs() {
+            const tabs = document.querySelectorAll('.admin-tab');
+            const blogPanel = document.getElementById('admin-blog-panel');
+            const jsonPanel = document.getElementById('admin-json-panel');
+
+            const setTab = (tab) => {
+                this.activeTab = tab;
+                tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+                if (blogPanel) blogPanel.classList.toggle('active', tab === 'blog');
+                if (jsonPanel) jsonPanel.classList.toggle('active', tab === 'json');
+            };
+
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => setTab(btn.dataset.tab));
+            });
+
+            setTab(this.activeTab);
+        }
+
+        getJsonConfig(id) {
+            const map = {
+                posts: { file: 'posts.json', storageKey: STORAGE_KEY, label: 'posts.json' },
+                tech: { file: 'tech.json', storageKey: `${JSON_STORAGE_PREFIX}tech`, label: 'tech.json' },
+                projects: { file: 'projects.json', storageKey: `${JSON_STORAGE_PREFIX}projects`, label: 'projects.json' }
+            };
+            return map[id] || map.posts;
+        }
+
+        async initJsonEditor() {
+            const select = document.getElementById('json-select');
+            const editor = document.getElementById('json-editor');
+            const btnLoad = document.getElementById('btn-json-load');
+            const btnSave = document.getElementById('btn-json-save');
+            const btnDownload = document.getElementById('btn-json-download');
+
+            if (!select || !editor) return;
+
+            const loadCurrent = async () => {
+                const cfg = this.getJsonConfig(select.value);
+                const cached = localStorage.getItem(cfg.storageKey);
+                if (cached) {
+                    editor.value = cached;
+                    return;
+                }
+                try {
+                    const res = await fetch(cfg.file);
+                    const data = await res.json();
+                    editor.value = JSON.stringify(data, null, 4);
+                } catch (e) {
+                    editor.value = '';
+                }
+            };
+
+            select.addEventListener('change', loadCurrent);
+            if (btnLoad) btnLoad.addEventListener('click', loadCurrent);
+
+            if (btnSave) {
+                btnSave.addEventListener('click', () => {
+                    const cfg = this.getJsonConfig(select.value);
+                    let parsed;
+                    try {
+                        parsed = JSON.parse(editor.value);
+                    } catch (e) {
+                        alert('JSON inválido. Revisa la sintaxis.');
+                        return;
+                    }
+
+                    localStorage.setItem(cfg.storageKey, JSON.stringify(parsed));
+
+                    // If editing posts.json, sync with blog DB
+                    if (select.value === 'posts') {
+                        this.db.posts = Array.isArray(parsed) ? parsed : [];
+                        this.db.save();
+                        this.renderPosts();
+                    }
+
+                    alert('Guardado en localStorage.');
+                });
+            }
+
+            if (btnDownload) {
+                btnDownload.addEventListener('click', () => {
+                    const cfg = this.getJsonConfig(select.value);
+                    const blob = new Blob([editor.value], { type: 'application/json' });
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = cfg.label;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    URL.revokeObjectURL(a.href);
+                });
+            }
+
+            await loadCurrent();
         }
 
         renderPosts() {

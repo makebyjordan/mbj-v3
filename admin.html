@@ -50,8 +50,8 @@
     </div>
 
     <!-- Login View -->
-    <section id="admin-login" class="admin-login" style="display: none;">
-        <div class="login-card" data-animate="fade-up">
+    <section id="admin-login" class="admin-login">
+        <div class="login-card">
             <h2>Panel del Blog</h2>
             <p>Introduce la contraseña para gestionar los artículos.</p>
             <form id="login-form">
@@ -80,8 +80,38 @@
                 </div>
             </div>
 
-            <div class="admin-posts" id="admin-posts-list">
-                <!-- Posts rendered via JS -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="blog">Blog</button>
+                <button class="admin-tab" data-tab="json">JSON</button>
+            </div>
+
+            <div id="admin-blog-panel" class="admin-panel active">
+                <div class="admin-posts" id="admin-posts-list">
+                    <!-- Posts rendered via JS -->
+                </div>
+            </div>
+
+            <div id="admin-json-panel" class="admin-panel">
+                <div class="admin-json-header">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="json-select">Selecciona JSON</label>
+                        <select id="json-select" class="form-select">
+                            <option value="posts">posts.json (Blog)</option>
+                            <option value="tech">tech.json</option>
+                            <option value="projects">projects.json</option>
+                        </select>
+                    </div>
+                    <div class="admin-json-actions">
+                        <button id="btn-json-load" class="btn btn-secondary btn-sm">Cargar</button>
+                        <button id="btn-json-save" class="btn btn-primary btn-sm">Guardar</button>
+                        <button id="btn-json-download" class="btn btn-secondary btn-sm">Descargar</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="json-editor">Contenido JSON</label>
+                    <textarea id="json-editor" class="form-textarea" placeholder="Aquí se cargará el JSON..."></textarea>
+                </div>
+                <p class="admin-json-note">Los cambios se guardan en el navegador (localStorage). Para publicarlos en el servidor, descarga el JSON y súbelo.</p>
             </div>
         </div>
     </section>

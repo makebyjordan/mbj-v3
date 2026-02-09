@@ -708,9 +708,10 @@
             const grid = document.getElementById('tech-grid');
             if (!grid) return;
 
-            fetch('tech.json')
-                .then(r => r.json())
-                .then(data => {
+            const cachedTech = localStorage.getItem('mbj_json_tech');
+            const techPromise = cachedTech ? Promise.resolve(JSON.parse(cachedTech)) : fetch('tech.json').then(r => r.json());
+
+            techPromise.then(data => {
                     grid.innerHTML = data.map((cat, i) => {
                         const techId = i;
                         const items = (cat.items || []).map(item => `
@@ -766,10 +767,9 @@
                             window.mbjModal.open(label, 'Tecnología', body);
                         });
                     });
-                })
-                .catch(() => {
-                    grid.innerHTML = '';
-                });
+            }).catch(() => {
+                grid.innerHTML = '';
+            });
         })();
     </script>
     <script>
@@ -777,9 +777,10 @@
             const grid = document.getElementById('projects-grid');
             if (!grid) return;
 
-            fetch('projects.json')
-                .then(r => r.json())
-                .then(data => {
+            const cachedProjects = localStorage.getItem('mbj_json_projects');
+            const projectsPromise = cachedProjects ? Promise.resolve(JSON.parse(cachedProjects)) : fetch('projects.json').then(r => r.json());
+
+            projectsPromise.then(data => {
                     grid.innerHTML = data.map((p, i) => {
                         const isLarge = p.size === 'large';
                         const delay = (i % 3) * 100;
@@ -833,10 +834,9 @@
                             window.mbjModal.open(p.title, p.category, body);
                         });
                     });
-                })
-                .catch(() => {
-                    grid.innerHTML = '';
-                });
+            }).catch(() => {
+                grid.innerHTML = '';
+            });
         })();
     </script>
 </body>

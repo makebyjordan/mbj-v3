@@ -67,9 +67,10 @@
             const mediaEl = document.getElementById('detail-media');
             const bodyEl = document.getElementById('detail-body');
 
-            fetch('tech.json')
-                .then(r => r.json())
-                .then(data => {
+            const cached = localStorage.getItem('mbj_json_tech');
+            const techPromise = cached ? Promise.resolve(JSON.parse(cached)) : fetch('tech.json').then(r => r.json());
+
+            techPromise.then(data => {
                     const t = data[id];
                     if (!t) {
                         titleEl.textContent = 'Tecnología no encontrada';
@@ -90,7 +91,7 @@
                         </div>
                     `).join('');
                     bodyEl.innerHTML = `<div class="tech-items">${items}</div>`;
-                });
+            });
         })();
     </script>
 </body>
