@@ -6,13 +6,32 @@
 (function () {
     'use strict';
 
+    const API_BASE = '/api';
     const STORAGE_KEY = 'mbj_blog_posts';
     const JSON_STORAGE_PREFIX = 'mbj_json_';
     const ADMIN_PASS = 'makebyjordan2026';
     const AUTH_KEY = 'mbj_admin_auth';
+    const API_TOKEN_KEY = 'mbj_api_token';
+
+    function esc(value) {
+        const s = String(value ?? '');
+        return s
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function sanitizeHtml(value) {
+        if (window.DOMPurify && typeof window.DOMPurify.sanitize === 'function') {
+            return window.DOMPurify.sanitize(String(value ?? ''));
+        }
+        return esc(String(value ?? ''));
+    }
 
     // ==========================================
-    // DATABASE — localStorage + JSON fallback
+    // DATABASE — API + local cache fallback
     // ==========================================
     class BlogDB {
         constructor() {
@@ -21,31 +40,37 @@
         }
 
         async load() {
-            // Try localStorage first
+            // Primary source: API
+            try {
+                const response = await fetch(`${API_BASE}/posts`);
+                this.posts = await response.json();
+                this.save();
+                this.loaded = true;
+                return this.posts;
+            } catch (e) {
+                console.error('Error loading /api/posts:', e);
+            }
+
+            // Fallback: localStorage cache
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored) {
                 try {
                     this.posts = JSON.parse(stored);
-                    this.loaded = true;
-                    return this.posts;
                 } catch (e) {
-                    console.warn('Error parsing localStorage, falling back to JSON');
+                    this.posts = [];
                 }
+            } else {
+                this.posts = [];
             }
 
-            // Fallback: load from posts.json
-            try {
-                const response = await fetch('posts.json');
-                this.posts = await response.json();
-                this.save(); // Persist to localStorage
-                this.loaded = true;
-                return this.posts;
-            } catch (e) {
-                console.error('Error loading posts.json:', e);
-                this.posts = [];
-                this.loaded = true;
-                return this.posts;
-            }
+            this.loaded = true;
+            return this.posts;
+        }
+
+        setAll(posts) {
+            this.posts = Array.isArray(posts) ? posts : [];
+            this.save();
+            return this.posts;
         }
 
         save() {
@@ -179,13 +204,16 @@
                 const dateStr = new Date(post.date).toLocaleDateString('es-ES', {
                     day: 'numeric', month: 'long', year: 'numeric'
                 });
+                const safeTitle = esc(post.title);
+                const safeCategory = esc(post.category);
+                const safeExcerpt = esc(post.excerpt);
                 return `
                     <a href="post.html?id=${post.id}" class="blog-card" data-animate="fade-up" data-delay="${i * 80}">
                         <div class="blog-card-image">
                             <div class="blog-card-gradient" style="background: linear-gradient(135deg, ${post.gradient[0]}, ${post.gradient[1]})"></div>
-                            ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-card-photo" loading="lazy" data-post="${post.id}">` : ''}
+                            ${post.image ? `<img src="${esc(post.image)}" alt="${safeTitle}" class="blog-card-photo" loading="lazy" data-post="${post.id}">` : ''}
                             <div class="blog-card-shape">${shape}</div>
-                            <span class="blog-card-category">${post.category}</span>
+                            <span class="blog-card-category">${safeCategory}</span>
                         </div>
                         <div class="blog-card-body">
                             <div class="blog-card-date">
@@ -195,10 +223,10 @@
                                 </svg>
                                 ${dateStr}
                             </div>
-                            <h3>${post.title}</h3>
-                            <p>${post.excerpt}</p>
+                            <h3>${safeTitle}</h3>
+                            <p>${safeExcerpt}</p>
                             <div class="blog-card-tags">
-                                ${post.tags.map(t => `<span>${t}</span>`).join('')}
+                                ${post.tags.map(t => `<span>${esc(t)}</span>`).join('')}
                             </div>
                             <div class="modal-actions">
                                 <a class="btn btn-secondary" href="post.html?id=${post.id}" target="_blank" rel="noopener">Leer más</a>
@@ -246,8 +274,8 @@
                         day: 'numeric', month: 'long', year: 'numeric'
                     });
                     const body = `
-                        ${post.image ? `<img src="${post.image}" alt="${post.title}">` : ''}
-                        ${post.content || ''}
+                        ${post.image ? `<img src="${esc(post.image)}" alt="${esc(post.title)}">` : ''}
+                        ${sanitizeHtml(post.content || '')}
                     `;
                     openModal(post.title, `${post.category} · ${dateStr}`, body);
                 });
@@ -297,7 +325,7 @@
                     day: 'numeric', month: 'long', year: 'numeric'
                 });
                 metaEl.innerHTML = `
-                    <span class="post-meta-category">${post.category}</span>
+                    <span class="post-meta-category">${esc(post.category)}</span>
                     <span class="post-meta-item">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                             <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1"/>
@@ -310,7 +338,7 @@
                             <circle cx="7" cy="5" r="3" stroke="currentColor" stroke-width="1"/>
                             <path d="M2 13C2 10.2 4.2 8 7 8C9.8 8 12 10.2 12 13" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
                         </svg>
-                        ${post.author}
+                        ${esc(post.author)}
                     </span>
                 `;
             }
@@ -319,7 +347,7 @@
             const heroEl = document.getElementById('post-hero-image');
             if (heroEl && post.image) {
                 heroEl.innerHTML = `
-                    <img src="${post.image}" alt="${post.title}">
+                    <img src="${esc(post.image)}" alt="${esc(post.title)}">
                 `;
             }
 
@@ -330,13 +358,13 @@
             // Render content
             const contentEl = document.getElementById('post-content');
             if (contentEl) {
-                contentEl.innerHTML = post.content;
+                contentEl.innerHTML = sanitizeHtml(post.content);
 
                 // Add tags
                 if (post.tags && post.tags.length > 0) {
                     contentEl.innerHTML += `
                         <div class="post-tags">
-                            ${post.tags.map(t => `<span>${t}</span>`).join('')}
+                            ${post.tags.map(t => `<span>${esc(t)}</span>`).join('')}
                         </div>
                     `;
                 }
@@ -397,12 +425,13 @@
         }
 
         isAuthenticated() {
-            return localStorage.getItem(AUTH_KEY) === 'true';
+            return localStorage.getItem(AUTH_KEY) === 'true' && !!localStorage.getItem(API_TOKEN_KEY);
         }
 
-        login(password) {
+        login(password, apiToken) {
             if (password === ADMIN_PASS) {
                 localStorage.setItem(AUTH_KEY, 'true');
+                localStorage.setItem(API_TOKEN_KEY, apiToken);
                 return true;
             }
             return false;
@@ -410,7 +439,36 @@
 
         logout() {
             localStorage.removeItem(AUTH_KEY);
+            localStorage.removeItem(API_TOKEN_KEY);
             window.location.reload();
+        }
+
+        getApiToken() {
+            return localStorage.getItem(API_TOKEN_KEY) || '';
+        }
+
+        async apiFetch(path, options = {}) {
+            const token = this.getApiToken();
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(options.headers || {})
+            };
+
+            if (token) {
+                headers.Authorization = `Bearer ${token}`;
+            }
+
+            const response = await fetch(path, {
+                ...options,
+                headers
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || `HTTP ${response.status}`);
+            }
+
+            return response;
         }
 
         initLogin() {
@@ -421,7 +479,8 @@
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const pass = document.getElementById('login-password').value;
-                if (this.login(pass)) {
+                const token = document.getElementById('login-api-token').value.trim();
+                if (this.login(pass, token)) {
                     window.location.reload();
                 } else {
                     loginError.classList.add('show');
@@ -470,9 +529,9 @@
 
         getJsonConfig(id) {
             const map = {
-                posts: { file: 'posts.json', storageKey: STORAGE_KEY, label: 'posts.json' },
-                tech: { file: 'tech.json', storageKey: `${JSON_STORAGE_PREFIX}tech`, label: 'tech.json' },
-                projects: { file: 'projects.json', storageKey: `${JSON_STORAGE_PREFIX}projects`, label: 'projects.json' }
+                posts: { publicApi: `${API_BASE}/posts`, adminApi: `${API_BASE}/admin/posts`, storageKey: STORAGE_KEY, label: 'posts.json' },
+                tech: { publicApi: `${API_BASE}/tech`, adminApi: `${API_BASE}/admin/tech`, storageKey: `${JSON_STORAGE_PREFIX}tech`, label: 'tech.json' },
+                projects: { publicApi: `${API_BASE}/projects`, adminApi: `${API_BASE}/admin/projects`, storageKey: `${JSON_STORAGE_PREFIX}projects`, label: 'projects.json' }
             };
             return map[id] || map.posts;
         }
@@ -488,17 +547,13 @@
 
             const loadCurrent = async () => {
                 const cfg = this.getJsonConfig(select.value);
-                const cached = localStorage.getItem(cfg.storageKey);
-                if (cached) {
-                    editor.value = cached;
-                    return;
-                }
                 try {
-                    const res = await fetch(cfg.file);
+                    const res = await fetch(cfg.publicApi);
                     const data = await res.json();
                     editor.value = JSON.stringify(data, null, 4);
                 } catch (e) {
-                    editor.value = '';
+                    const cached = localStorage.getItem(cfg.storageKey);
+                    editor.value = cached || '';
                 }
             };
 
@@ -506,7 +561,7 @@
             if (btnLoad) btnLoad.addEventListener('click', loadCurrent);
 
             if (btnSave) {
-                btnSave.addEventListener('click', () => {
+                btnSave.addEventListener('click', async () => {
                     const cfg = this.getJsonConfig(select.value);
                     let parsed;
                     try {
@@ -516,16 +571,25 @@
                         return;
                     }
 
-                    localStorage.setItem(cfg.storageKey, JSON.stringify(parsed));
+                    try {
+                        await this.apiFetch(cfg.adminApi, {
+                            method: 'PUT',
+                            body: JSON.stringify(parsed)
+                        });
+                    } catch (e) {
+                        alert(`No se pudo guardar en API: ${e.message}`);
+                        return;
+                    }
+
+                    localStorage.setItem(cfg.storageKey, JSON.stringify(parsed, null, 4));
 
                     // If editing posts.json, sync with blog DB
                     if (select.value === 'posts') {
-                        this.db.posts = Array.isArray(parsed) ? parsed : [];
-                        this.db.save();
+                        this.db.setAll(parsed);
                         this.renderPosts();
                     }
 
-                    alert('Guardado en localStorage.');
+                    alert('Guardado en API.');
                 });
             }
 
@@ -563,8 +627,8 @@
                 return `
                     <div class="admin-post-item">
                         <div class="admin-post-info">
-                            <h3>${post.title}</h3>
-                            <span>${post.category} · ${dateStr}</span>
+                            <h3>${esc(post.title)}</h3>
+                            <span>${esc(post.category)} · ${dateStr}</span>
                         </div>
                         <div class="admin-post-actions">
                             <button class="btn-icon" onclick="blogAdmin.openModal(${post.id})" title="Editar">
@@ -592,9 +656,9 @@
             if (overlay) overlay.addEventListener('click', () => this.closeModal());
             if (cancelBtn) cancelBtn.addEventListener('click', () => this.closeModal());
             if (form) {
-                form.addEventListener('submit', (e) => {
+                form.addEventListener('submit', async (e) => {
                     e.preventDefault();
-                    this.savePost();
+                    await this.savePost();
                 });
             }
         }
@@ -635,7 +699,7 @@
             }
         }
 
-        savePost() {
+        async savePost() {
             const form = document.getElementById('post-form');
             const data = {
                 title: form.querySelector('#form-title').value,
@@ -661,13 +725,32 @@
                 this.db.create(data);
             }
 
+            try {
+                await this.apiFetch(`${API_BASE}/admin/posts`, {
+                    method: 'PUT',
+                    body: JSON.stringify(this.db.getAll())
+                });
+            } catch (e) {
+                alert(`No se pudo guardar en API: ${e.message}`);
+                return;
+            }
+
             this.closeModal();
             this.renderPosts();
         }
 
-        deletePost(id) {
+        async deletePost(id) {
             if (confirm('¿Estás seguro de que quieres eliminar este artículo?')) {
                 this.db.delete(id);
+                try {
+                    await this.apiFetch(`${API_BASE}/admin/posts`, {
+                        method: 'PUT',
+                        body: JSON.stringify(this.db.getAll())
+                    });
+                } catch (e) {
+                    alert(`No se pudo eliminar en API: ${e.message}`);
+                    return;
+                }
                 this.renderPosts();
             }
         }

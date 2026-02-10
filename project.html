@@ -71,8 +71,7 @@
             const bodyEl = document.getElementById('detail-body');
             const actionsEl = document.getElementById('detail-actions');
 
-            const cached = localStorage.getItem('mbj_json_projects');
-            const projectsPromise = cached ? Promise.resolve(JSON.parse(cached)) : fetch('projects.json').then(r => r.json());
+            const projectsPromise = fetch('/api/projects').then(r => r.json());
 
             projectsPromise.then(data => {
                     const p = data[id];

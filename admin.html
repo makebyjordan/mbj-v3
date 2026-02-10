@@ -59,6 +59,10 @@
                     <label for="login-password">Contraseña</label>
                     <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
                 </div>
+                <div class="form-group">
+                    <label for="login-api-token">API Token</label>
+                    <input type="password" id="login-api-token" class="form-input" placeholder="Bearer token del servidor" required>
+                </div>
                 <div id="login-error" class="login-error">Contraseña incorrecta.</div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
             </form>
@@ -156,6 +160,7 @@
         </div>
     </div>
 
+    <script src="vendor/dompurify.min.js"></script>
     <script src="blog.js"></script>
 </body>
 </html>

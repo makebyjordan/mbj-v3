@@ -1,0 +1,16 @@
+[Unit]
+Description=MBJ-V3 Mini API
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/mbj-v3/server
+Environment=NODE_ENV=production
+EnvironmentFile=/var/www/mbj-v3/server/.env
+ExecStart=/usr/bin/node /var/www/mbj-v3/server/src/index.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -67,8 +67,7 @@
             const mediaEl = document.getElementById('detail-media');
             const bodyEl = document.getElementById('detail-body');
 
-            const cached = localStorage.getItem('mbj_json_tech');
-            const techPromise = cached ? Promise.resolve(JSON.parse(cached)) : fetch('tech.json').then(r => r.json());
+            const techPromise = fetch('/api/tech').then(r => r.json());
 
             techPromise.then(data => {
                     const t = data[id];
